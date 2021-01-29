@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float gravityForce = -9.81f;
     float gravityVel = 0;
     [SerializeField] Transform bottom = null;
-    [SerializeField] LayerMask noPlayer;
+    [SerializeField] LayerMask noPlayer = default;
 
     void Update()
     {
