@@ -11,12 +11,11 @@ public class SpinningNode : PathNode
     public override Sequence MoveToNode(GameObject toMove)
     {
         Sequence ret = DOTween.Sequence();
-        ret.AppendInterval(TimeToGetToNode);
         Vector3 orgiScale = transform.localScale;
-        ret.Insert(0, toMove.transform.DOScale(Vector3.zero, TimeToGetToNode));
+        ret.Append(toMove.transform.DOScale(Vector3.zero, TimeToGetToNode / 2));
+        ret.AppendCallback(() => toMove.transform.position = transform.position);
+        ret.Append(toMove.transform.DOScale(orgiScale, TimeToGetToNode / 2));
         ret.Insert(0, MakeItSpin(toMove));
-        ret.AppendCallback(() => toMove.transform.SetPositionAndRotation(transform.position, transform.rotation));
-        ret.AppendCallback(() => toMove.transform.localScale = orgiScale);
         return ret;
     }
 
@@ -28,6 +27,7 @@ public class SpinningNode : PathNode
             ret.Append(toMove.transform.DORotate(Vector3.zero, TimeToGetToNode / NUMBER_OF_SPINS / 2, RotateMode.FastBeyond360));
             ret.Append(toMove.transform.DORotate(new Vector3(0, 180, 0), TimeToGetToNode / NUMBER_OF_SPINS / 2, RotateMode.FastBeyond360));
         }
+        ret.Append(toMove.transform.DORotate(transform.rotation.eulerAngles, TimeToGetToNode / NUMBER_OF_SPINS / 2, RotateMode.FastBeyond360));
         return ret;
     }
 }
