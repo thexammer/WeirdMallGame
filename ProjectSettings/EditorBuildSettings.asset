@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: b06418d689984f04fa6bd60d09084d8d
+  - enabled: 1
+    path: Assets/Scenes/Fish Room.unity
+    guid: 2101551deadd7e740a51408d0a202e9a
+  - enabled: 1
+    path: Assets/Scenes/Main_Scene.unity
+    guid: 4a3ff4552fedaf249b4c1ebe145f5b09
   m_configObjects: {}

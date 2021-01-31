@@ -16,49 +16,54 @@ public class FishEnding : MonoBehaviour
 
     private string words = "You've been here awile, better wake up before you forget how :)";
 
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && !inFishRoom)
+        Debug.Log("debug");
+
+        if (other.gameObject.tag == "Player")
         {
-            inFishRoom = true;
-            StartCoroutine(FishEndingTime());
+            Debug.Log("here");
+            SceneManager.LoadScene("Fish Room");
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void Start()
     {
-        if (other.tag == "Player" && !inFishRoom)
-        {
-            inFishRoom = true;
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Fish Room"))
             StartCoroutine(FishEndingTime());
-        }
     }
 
 
 
     IEnumerator FishEndingTime()
     {
-        while(fish.transform.position != target.position)
+        Debug.Log("called");
+        if (fish.transform.position != target.position)
         {
             fish.transform.position = Vector3.MoveTowards(fish.transform.position, target.position, step);
+            yield return new WaitForSecondsRealtime(.15f);
+            StartCoroutine(FishEndingTime());
+            yield break;
         }
-
-        StartCoroutine(Text());
-
-        
-        yield return null;
+        else
+        {
+            Debug.Log("starttext");
+            StartCoroutine(Text());
+        }
     }
 
     IEnumerator Text()
     {
-
+        Debug.Log("here");
         text.text += words[count];
         count += 1;
 
-        if (count > words.Length)
+        if (count > words.Length - 1)
         {
             SceneManager.LoadScene("Credits");
-            yield return null; }
+            yield return null;
+        }
         else
         {
             yield return new WaitForSecondsRealtime(.25f);
