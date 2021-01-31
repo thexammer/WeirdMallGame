@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Falling physics
 
-        if (Physics.CheckSphere(bottom.position, 0.25f, noPlayer))
+        if (Physics.CheckSphere(bottom.position, 0.25f, noPlayer, QueryTriggerInteraction.Ignore))
         {
             gravityVel = 0;
         }

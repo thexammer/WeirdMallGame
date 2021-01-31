@@ -28,6 +28,17 @@ public class FishEnding : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log("debug");
+
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("here");
+            SceneManager.LoadScene("Fish Room");
+        }
+    }
+
     private void Start()
     {
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Fish Room"))
