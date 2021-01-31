@@ -7,7 +7,7 @@ public class TeleportTo : MonoBehaviour
 {
     public Transform TeleportPoint;
 
-    public float PlayerSpeed = 5f;
+    public float PlayerSpeed = 10f;
 
     private void OnTriggerEnter(Collider other)
     {

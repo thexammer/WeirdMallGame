@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 8041864049790839649}
-  speed: 5
+  speed: 10
   gravityForce: -9.81
   bottom: {fileID: 8041864049435650759}
   noPlayer:
